@@ -16,19 +16,19 @@
                 <div class="navbar-nav w-100">
                     <a href="adm.php" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Etudiant</a>
+                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Professors</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="etudiants.php" class="dropdown-item active">Etudiants</a>
-                            <a href="creatEtd.php" class="dropdown-item">Create</a>
-                            <a href="updateEtd.php" class="dropdown-item">update</a>
+                            <a href="professors.php" class="dropdown-item active">Professor</a>
+                            <a href="creatPrf.php" class="dropdown-item">Create</a>
+                            <a href="updatePrf.php" class="dropdown-item">update</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>Courses</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>Materiels</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="courses.php" class="dropdown-item">Courses</a>
-                            <a href="creatCrs.php" class="dropdown-item">Create</a>
-                            <a href="updateCrs.php" class="dropdown-item">update</a>
+                            <a href="materiels.php" class="dropdown-item">Materiel</a>
+                            <a href="creatMtr.php" class="dropdown-item">Create</a>
+                            <a href="updateMtr.php" class="dropdown-item">update</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">

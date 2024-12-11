@@ -7,17 +7,17 @@
     $connection = new Connection();
 
     //call the selectDatabase method
-    $connection->selectDatabase('emsipoo');
+    $connection->selectDatabase('materielmangement');
     
      //include the client file
-    include('../classes/courses.php');
+    include('../classes/materiel.php');
     $id = $_GET['id'];
     //call the static selectCoursByEtudiant method and store the result of the method in $clients
     
 
-    //call the static selectAllCourses method and store the result of the method in $clients
-    $courses = Cours::selectEtudiantsByCours($connection->conn,$id);
-    $cours = Cours::selectCoursById('course',$connection->conn,$id);
+    //call the static selectProfByMateriels method and store the result of the method in $clients
+    $professors = Materiel::selectProfByMateriels($connection->conn,$id);
+    $materiel = Materiel::selectmaterielById('materiel',$connection->conn,$id);
 
 ?>
 
@@ -55,7 +55,7 @@
             <!-- Etudiants Start -->
             <div class="table-responsive">
                 <br>
-                <a class="btn btn-outline-success" href="courses.php"><?php echo "$cours[courseName]" ?></a>
+                <a class="btn btn-outline-success" href="materiels.php"><?php echo "$materiel[materielName]" ?></a>
                 <table class="table text-start align-middle table-bordered table-hover mb-0">
                 <thead>
                     <tr class="text-white">
@@ -64,20 +64,20 @@
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">address</th>
-                        <th scope="col">date Inscription</th>
+                        <th scope="col">date reservation</th>
                     </tr>
                     </thead>
                     <tbody>
                         <?php
                             $i=1;
-                            foreach($courses as $row){
+                            foreach($professors as $row){
                                 echo " <tr>
                                 <td>".$i++."</td>
                                 <td>$row[firstname]</td>
                                 <td>$row[lastname]</td>
                                 <td>$row[email]</td>
                                 <td>$row[address]</td>
-                                <td>$row[dateInscription]</td>
+                                <td>$row[datereservation]</td>
                             </tr>"; 
                             }
                         ?>

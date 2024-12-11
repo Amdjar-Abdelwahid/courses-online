@@ -64,7 +64,7 @@ session_start();
 			<!-- Stdeunt login page -->
 			<fieldset>
 				<legend>
-					<h3 style="padding-top: 25px;"><span class="glyphicon glyphicon-lock"></span>&nbsp;  Student Login</h3>
+					<h3 style="padding-top: 25px;"><span class="glyphicon glyphicon-lock"></span>&nbsp;  Professor Login</h3>
 				</legend>
 				<form name="studentlogin" action="./test/loginstudent.php" method="POST">
 					<div class="control-group form-group">

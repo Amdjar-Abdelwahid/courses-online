@@ -7,17 +7,17 @@
     $connection = new Connection();
 
     //call the selectDatabase method
-    $connection->selectDatabase('emsipoo');
+    $connection->selectDatabase('materielmangement');
     
      //include the client file
-    include('../classes/courses.php');
+    include('../classes/materiel.php');
 
-    //call the static selectAllCourses method and store the result of the method in $clients
-    $courses = Cours::selectAllCourses('course',$connection->conn);
+    //call the static selectAllmateriels method and store the result of the method in $clients
+    $materiels = Materiel::selectAllmateriels('materiel',$connection->conn);
 
     if(isset($_POST['search'])){
         $id=$_POST['names'];
-        header("Location:crsEtd.php?id=$id");
+        header("Location:mtrProf.php?id=$id");
       }
 
 ?>
@@ -56,16 +56,16 @@
             <!-- Etudiants Start -->
             <div class="table-responsive">
                 <br>
-                <h6 class="mb-4">List of Courses</h6> 
+                <h6 class="mb-4">List of Materiels</h6> 
                 <form class="d-none d-md-flex ms-4" method="post">
                     <!-- <input class="form-control bg-dark border-0" type="search" placeholder="Search"> -->
                     <button class="btn btn-outline-success" type="submit" name="search">search</button>
                     <select name='names' class="form-control bg-dark border-0">
-                        <option selected>Select a cours</option>
+                        <option selected>Select a Materiels</option>
                         <?php
                                 
-                                foreach($courses as $row){
-                                        echo "<option value='$row[id]' >$row[courseName]</option>";
+                                foreach($materiels as $row){
+                                        echo "<option value='$row[id]' >$row[materielName]</option>";
 
                                 }
                         ?>
@@ -79,8 +79,7 @@
                         <th scope="col">Code</th>
                         <th scope="col">Name</th>
                         <th scope="col">Title</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
                         <th scope="col">Url</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -88,15 +87,14 @@
                     <tbody>
                         <?php
                             $i=1;
-                            foreach($courses as $row){
+                            foreach($materiels as $row){
                                 echo " <tr>
                                 <td>".$i++."</td>
-                                <td>$row[courseCode]</td>
-                                <td>$row[courseName]</td>
-                                <td>$row[courseTitle]</td>
-                                <td>$row[courseAuthor]</td>
-                                <td>$row[coursePrice]</td>
-                                <td>$row[courseUrl]</td>
+                                <td>$row[materielCode]</td>
+                                <td>$row[materielName]</td>
+                                <td>$row[materielTitle]</td>
+                                <td>$row[materielQte]</td>
+                                <td>$row[materielUrl]</td>
                                 <td>  
                                 <a class ='btn btn-success btn-sm' href='updateCrs.php?id=$row[id]'>edit</a>
                                 <a class ='btn btn-danger btn-sm' href='deleteCrs.php?id=$row[id]'>delete</a>

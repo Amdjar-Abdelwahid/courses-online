@@ -6,7 +6,7 @@
     $connection = new Connection();
 
     //call the selectDatabase method
-    $connection->selectDatabase('emsipoo');
+    $connection->selectDatabase('materielmangement');
 
     $fnameValue = "";
     $lnameValue = "";
@@ -35,20 +35,20 @@
         }else if(preg_match("/[A-Z]+/", $passwordValue)==0){
             $errorMesage = "Password should contain at least one uppercase letter!";
         }else {
-            //include the etudiant file
-            include('../classes/etudiant.php');
+            //include the professor file
+            include('../classes/professor.php');
 
             //create new instance of client class with the values of the inputs
-            $etudiant = new Etudiant($fnameValue,$lnameValue,$emailValue,$passwordValue,$adressValue,$phoneValue,$promotionValue);
+            $professor = new Professor($fnameValue,$lnameValue,$emailValue,$passwordValue,$adressValue,$phoneValue,$promotionValue);
 
             //call the insertClient method
-            $etudiant->insertEtudiant('etudiant',$connection->conn);
+            $professor->insertProfessor('professor',$connection->conn);
 
             //give the $successMesage the value of the static $successMsg of the class
-            $successMesage = Etudiant::$successMsg;
+            $successMesage = Professor::$successMsg;
 
             //give the $errorMesage the value of the static $errorMsg of the class
-            $errorMesage = Etudiant::$errorMsg;
+            $errorMesage = Professor::$errorMsg;
 
 
         }
@@ -87,12 +87,12 @@
             <!-- Navbar End -->
 
 
-            <!-- Create Etudiant Start -->
+            <!-- Create professor Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Ajouter Etudiant</h6>
+                            <h6 class="mb-4">Ajouter Professor</h6>
                             <?php
 
                             if(!empty($errorMesage)){
@@ -151,7 +151,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Create Etudiant End -->
+            <!-- Create professor End -->
 
 
             <!-- Footer Start -->

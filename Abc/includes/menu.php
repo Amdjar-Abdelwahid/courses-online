@@ -11,7 +11,8 @@
     <div class="menu menu_mm">
         <ul class="menu_list menu_mm">
             <li class="menu_item menu_mm"><a href="index.php">Home</a></li>
-            <li class="menu_item menu_mm"><a href="courses.php">Courses</a></li>
+            <li class="menu_item menu_mm"><a href="materiels.php">Materiel</a></li>
+            <li class="menu_item menu_mm"><a href="demande.php">Demande</a></li>
         </ul>
 
         <!-- Menu Social -->

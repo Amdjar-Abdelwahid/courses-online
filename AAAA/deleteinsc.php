@@ -9,13 +9,13 @@ include('../classes/connextion.php');
 $connection = new Connection();
 
 //call the selectDatabase method
-$connection->selectDatabase('emsipoo');
+$connection->selectDatabase('materielmangement');
 
 
-include('../classes/inscription.php');
-Inscription::deleteInscription('inscription',$connection->conn,$id);
-echo Inscription::$successMsg;
-echo Inscription::$errorMsg;
+include('../classes/reservation.php');
+Reservation::deletereservation('reservation',$connection->conn,$id);
+echo Reservation::$successMsg;
+echo Reservation::$errorMsg;
 
 }
 ?>

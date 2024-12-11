@@ -7,7 +7,7 @@
     $connection = new Connection();
 
     //call the selectDatabase method
-    $connection->selectDatabase('emsipoo');
+    $connection->selectDatabase('materielmangement');
 
     $fnameValue = "";
     $lnameValue = "";
@@ -45,18 +45,18 @@
             $errorMesage = "Password should contain at least one uppercase letter!";
         }else {
             //include the etudiant file
-            include('./classes/etudiant.php');
+			include('./classes/professor.php');
 
             //create new instance of client class with the values of the inputs
-            $etudiant = new Etudiant($fnameValue,$lnameValue,$emailValue,$passwordValue,$adressValue,$phoneValue,0);
+            $Professor = new Professor($fnameValue,$lnameValue,$emailValue,$passwordValue,$adressValue,$phoneValue,0);
 
             //call the insertClient method
-            $etudiant->insertEtudiant('etudiant',$connection->conn);
+            $Professor->insertProfessor('Professor',$connection->conn);
             //give the $successMesage the value of the static $successMsg of the class
-            $successMesage = Etudiant::$successMsg;
+            $successMesage = Professor::$successMsg;
 
             //give the $errorMesage the value of the static $errorMsg of the class
-            $errorMesage = Etudiant::$errorMsg;
+            $errorMesage = Professor::$errorMsg;
 
 
         }

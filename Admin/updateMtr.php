@@ -6,46 +6,44 @@
     $connection = new Connection();
 
     //call the selectDatabase method
-    $connection->selectDatabase('emsipoo');
+    $connection->selectDatabase('materielmangement');
 
     $codeValue = "";
     $nameValue = "";
     $titleValue = "";
-    $authorValue = "";
-    $priceValue = "";
+    $qauntityValue = "";
     $urlValue = "";
 
-    $errorMesage = "";
-    $successMesage = ""; 
+    //include the materiel file
+    include('../classes/materiel.php');
 
-    if(isset($_POST["submit"])){
+    if($_SERVER['REQUEST_METHOD']=='GET'){
+
+        $id = $_GET['id'];
+    
+    //call the staticbselectClientById method and store the result of the method in $row
+    $row=Materiel::selectMaterielById('materiel',$connection->conn,$id);
+    
+    $codeValue = $row["materielCode"];
+    $nameValue = $row["materielName"];
+    $titleValue = $row["materielTitle"];
+    $qauntityValue = $row["materielQte"];
+    $urlValue = $row["materielUrl"];
+    
+    }else if(isset($_POST["submit"])){
 
         $codeValue = $_POST["code"];
         $nameValue = $_POST["Cname"];
         $titleValue = $_POST["title"];
-        $authorValue = $_POST["Author"];
-        $priceValue = $_POST["price"];
+        $qauntityValue = $_POST["price"];
         $urlValue = $_POST["url"];
 
-        if( empty($nameValue)){
+        if(empty($codeValue) || empty($nameValue) || empty($titleValue)  || empty($qauntityValue) || empty($urlValue)){
             $errorMesage = "all fileds must be filed out!";
-        }else {
-            //include the etudiant file
-            include('../classes/courses.php');
-
-            //create new instance of client class with the values of the inputs
-            $courses = new Cours($codeValue,$nameValue,$titleValue,$authorValue,$priceValue,$urlValue);
-
-            //call the insertClient method
-            $courses->insertCours('course',$connection->conn);
-
-            //give the $successMesage the value of the static $successMsg of the class
-            $successMesage = Cours::$successMsg;
-
-            //give the $errorMesage the value of the static $errorMsg of the class
-            $errorMesage = Cours::$errorMsg;
-
-
+        }else{
+            $materiel = new Materiel($codeValue,$nameValue,$titleValue,$qauntityValue,$urlValue);
+            
+            Materiel::updateMateriel($materiel,'materiel',$connection->conn, $_GET['id']);
         }
     }
 
@@ -82,12 +80,12 @@
             <!-- Navbar End -->
 
 
-            <!-- Create Etudiant Start -->
+            <!-- Create materiel Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Ajouter Etudiant</h6>
+                            <h6 class="mb-4">Update Materiels</h6>
                             <?php
 
                             if(!empty($errorMesage)){
@@ -113,36 +111,32 @@
                             <br>
                             <form method="post">
                                 <div class="mb-3">
-                                    <label for="code" class="form-label">course Code</label>
-                                    <input type="number" class="form-control" id="code" name="code">
+                                    <label for="code" class="form-label">materiels Code</label>
+                                    <input type="text" class="form-control" id="code" name="code" value="<?php echo $codeValue ?>">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="Cname" class="form-label">Course name</label>
-                                    <input type="text" class="form-control" id="Cname" name="Cname">
+                                    <label for="Cname" class="form-label">materiels name</label>
+                                    <input type="text" class="form-control" id="Cname" name="Cname" value="<?php echo $nameValue ?>">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="title" class="form-label">Course Title</label>
-                                    <input type="text" class="form-control" id="title" name="title">
+                                    <label for="title" class="form-label">materiels Title</label>
+                                    <input type="text" class="form-control" id="title" name="title" value="<?php echo $titleValue ?>">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="Author" class="form-label">Course Author</label>
-                                    <input type="text" class="form-control" id="Author" name="Author">
+                                    <label for="price" class="form-label">materiels Quantity</label>
+                                    <input type="number" class="form-control" id="price" name="price" value="<?php echo $qauntityValue ?>">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="price" class="form-label">Course price</label>
-                                    <input type="number" class="form-control" id="price" name="price">
+                                    <label for="url" class="form-label">materiels url</label>
+                                    <input type="text" class="form-control" id="url" name="url" value="<?php echo $urlValue ?>">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="url" class="form-label">Course url</label>
-                                    <input type="text" class="form-control" id="url" name="url">
-                                </div>
-                                <button type="submit" class="btn btn-primary" name="submit"->Ajouter Cours</button>
+                                <button type="submit" class="btn btn-primary" name="submit"->Update materiel</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Create Etudiant End -->
+            <!-- Create materiel End -->
 
 
             <!-- Footer Start -->

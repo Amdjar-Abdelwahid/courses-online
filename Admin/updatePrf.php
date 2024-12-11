@@ -6,47 +6,49 @@
     $connection = new Connection();
 
     //call the selectDatabase method
-    $connection->selectDatabase('emsipoo');
+    $connection->selectDatabase('materielmangement');
 
-    $codeValue = "";
-    $nameValue = "";
-    $titleValue = "";
-    $authorValue = "";
-    $priceValue = "";
-    $urlValue = "";
+    $fnameValue = "";
+    $lnameValue = "";
+    $emailValue = "";
+    $adressValue = "";
+    $phoneValue = "";
+    $promotionValue = "";
+    $errorMesage = "";
+    $successMesage = "";
 
-    //include the Cours file
-    include('../classes/courses.php');
+    //include the professor file
+    include('../classes/professor.php');
 
     if($_SERVER['REQUEST_METHOD']=='GET'){
 
         $id = $_GET['id'];
     
     //call the staticbselectClientById method and store the result of the method in $row
-    $row=Cours::selectCoursById('course',$connection->conn,$id);
+    $row=Professor::selectProfessorById('professor',$connection->conn,$id);
     
-    $codeValue = $row["courseCode"];
-    $nameValue = $row["courseName"];
-    $titleValue = $row["courseTitle"];
-    $authorValue = $row["courseAuthor"];
-    $priceValue = $row["coursePrice"];
-    $urlValue = $row["courseUrl"];
+    $fnameValue = $row["firstname"];
+    $lnameValue = $row["lastname"];
+    $emailValue = $row["email"];
+    $adressValue = $row["address"];
+    $phoneValue = $row["phone"];
+    $promotionValue = $row["promotion"];
     
     }else if(isset($_POST["submit"])){
 
-        $codeValue = $_POST["code"];
-        $nameValue = $_POST["Cname"];
-        $titleValue = $_POST["title"];
-        $authorValue = $_POST["Author"];
-        $priceValue = $_POST["price"];
-        $urlValue = $_POST["url"];
+        $fnameValue = $_POST["fname"];
+        $lnameValue = $_POST["lname"];
+        $emailValue = $_POST["email"];
+        $adressValue = $_POST["adrs"];
+        $phoneValue = $_POST["phone"];
+        $promotionValue = $_POST["promotion"];
 
-        if(empty($codeValue) || empty($nameValue) || empty($titleValue) || empty($authorValue) || empty($priceValue) || empty($urlValue)){
+        if(empty($fnameValue) || empty($lnameValue) || empty($emailValue) || empty($adressValue) || empty($phoneValue) ){
             $errorMesage = "all fileds must be filed out!";
         }else{
-            $cours = new Cours($codeValue,$nameValue,$titleValue,$authorValue,$priceValue,$urlValue);
+            $professor = new Professor($fnameValue,$lnameValue,$emailValue,'',$adressValue,$phoneValue,$promotionValue);
             
-            Cours::updateCours($cours,'course',$connection->conn, $_GET['id']);
+            Professor::updateProfessor($professor,'professor',$connection->conn, $_GET['id']);
         }
     }
 
@@ -83,12 +85,12 @@
             <!-- Navbar End -->
 
 
-            <!-- Create Cours Start -->
+            <!-- Create professor Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Update Cours</h6>
+                            <h6 class="mb-4">Update Professor</h6>
                             <?php
 
                             if(!empty($errorMesage)){
@@ -114,36 +116,36 @@
                             <br>
                             <form method="post">
                                 <div class="mb-3">
-                                    <label for="code" class="form-label">course Code</label>
-                                    <input type="number" class="form-control" id="code" name="code" value="<?php echo $codeValue ?>">
+                                    <label for="fname" class="form-label">First name</label>
+                                    <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $fnameValue ?>">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="Cname" class="form-label">Course name</label>
-                                    <input type="text" class="form-control" id="Cname" name="Cname" value="<?php echo $nameValue ?>">
+                                    <label for="lname" class="form-label">last name</label>
+                                    <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $lnameValue ?>">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="title" class="form-label">Course Title</label>
-                                    <input type="text" class="form-control" id="title" name="title" value="<?php echo $titleValue ?>">
+                                    <label for="email" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $emailValue ?>">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="Author" class="form-label">Course Author</label>
-                                    <input type="text" class="form-control" id="Author" name="Author" value="<?php echo $authorValue ?>">
+                                    <label for="address" class="form-label">address</label>
+                                    <input type="text" class="form-control" id="address" name="adrs" value="<?php echo $adressValue ?>">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="price" class="form-label">Course price</label>
-                                    <input type="number" class="form-control" id="price" name="price" value="<?php echo $priceValue ?>">
+                                    <label for="phone" class="form-label">phone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $phoneValue ?>">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="url" class="form-label">Course url</label>
-                                    <input type="text" class="form-control" id="url" name="url" value="<?php echo $urlValue ?>">
-                                </div>
-                                <button type="submit" class="btn btn-primary" name="submit"->Update Cours</button>
+                                    <label for="promotion" class="form-label">promotion</label>
+                                    <input type="number" class="form-control" id="promotion" name="promotion" value="<?php echo $promotionValue ?>">
+                                </div> 
+                                <button type="submit" class="btn btn-primary" name="submit"->Update</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Create Cours End -->
+            <!-- Create professor End -->
 
 
             <!-- Footer Start -->

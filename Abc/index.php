@@ -19,13 +19,13 @@
     $connection = new Connection();
 
     //call the selectDatabase method
-    $connection->selectDatabase('emsipoo');
+    $connection->selectDatabase('materielmangement');
     
      //include the client file
-    include('../classes/courses.php');
+    include('../classes/materiel.php');
 
-    //call the static selectAllCourses method and store the result of the method in $clients
-    $courses = Cours::selectCourses('course',$connection->conn);
+    //call the static selectAllmateriel method and store the result of the method in $clients
+    $materiel = Materiel::selectmateriels('materiel',$connection->conn);
 ?>
 
 <!DOCTYPE html>
@@ -74,30 +74,30 @@
 				
 				<!-- Hero Slide -->
 				<div class="hero_slide">
-					<div class="hero_slide_background" style="background-image:url(images/slider_background.jpg)"></div>
+					<div class="hero_slide_background" style="background-image:url(images/malibrising1.jpg)"></div>
 					<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
 						<div class="hero_slide_content text-center">
-							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Education</span> today!</h1>
+							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Materiels</span> today!</h1>
 						</div>
 					</div>
 				</div>
 				
 				<!-- Hero Slide -->
 				<div class="hero_slide">
-					<div class="hero_slide_background" style="background-image:url(images/slider_background.jpg)"></div>
+					<div class="hero_slide_background" style="background-image:url(images/walper.jpg)"></div>
 					<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
 						<div class="hero_slide_content text-center">
-							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Education</span> today!</h1>
+							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Materiels</span> today!</h1>
 						</div>
 					</div>
 				</div>
 				
 				<!-- Hero Slide -->
 				<div class="hero_slide">
-					<div class="hero_slide_background" style="background-image:url(images/slider_background.jpg)"></div>
+					<div class="hero_slide_background" style="background-image:url(images/sliderBackgound2.jpg)"></div>
 					<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
 						<div class="hero_slide_content text-center">
-							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Education</span> today!</h1>
+							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Materiels</span> today!</h1>
 						</div>
 					</div>
 				</div>
@@ -119,8 +119,8 @@
 						<div class="hero_box d-flex flex-row align-items-center justify-content-start">
 							<img src="images/earth-globe.svg" class="svg" alt="">
 							<div class="hero_box_content">
-								<h2 class="hero_box_title">Online Courses</h2>
-								<a href="courses.html" class="hero_box_link">view more</a>
+								<h2 class="hero_box_title">Materiels</h2>
+								<a href="materiel.html" class="hero_box_link">view more</a>
 							</div>
 						</div>
 					</div>
@@ -130,7 +130,7 @@
 							<img src="images/books.svg" class="svg" alt="">
 							<div class="hero_box_content">
 								<h2 class="hero_box_title">Our Library</h2>
-								<a href="courses.html" class="hero_box_link">view more</a>
+								<a href="materiel.html" class="hero_box_link">view more</a>
 							</div>
 						</div>
 					</div>
@@ -157,28 +157,28 @@
 			<div class="row">
 				<div class="col">
 					<div class="section_title text-center">
-						<h1>Popular Courses</h1>
+						<h1>Popular Materiels</h1>
 					</div>
 				</div>
 			</div>
 
 			<div class="row course_boxes">
 			<?php
-                        foreach($courses as $row){
+                        foreach($materiel as $row){
 							echo "
 							<div class='col-lg-4 course_box'>
 								<div class='card'>
-									<img class='card-img-top' src='$row[courseUrl]' alt=''>
+									<img class='card-img-top' src='$row[materielUrl]' alt=''>
 									<div class='card-body text-center'>
-										<div class='card-title'><a href='../AAAA/pincode-verification.php?id=$row[id]'>$row[courseName]</a></div>
-										<div class='card-text'>$row[courseTitle]</div>
+										<div class='card-title'><a href='../AAAA/pincode-verification.php?id=$row[id]'>$row[materielName]</a></div>
+										<div class='card-text'>$row[materielTitle]</div>
 									</div>
 									<div class='price_box d-flex flex-row align-items-center'>l
 										<div class='course_author_image'>
 											<img src='images/author.jpg' alt=''>
 										</div>
-										<div class='course_author_name'>$row[courseAuthor], <span>Author</span></div>
-										<div class='course_price d-flex flex-column align-items-center justify-content-center'><span>$$row[coursePrice]</span></div>
+										<div class='course_author_name'>EMSI <span>Quantity disponible	</span></div>
+										<div class='course_price d-flex flex-column align-items-center justify-content-center'><span>$row[materielQte]</span></div>
 									</div>
 								</div>
 							</div>";

@@ -11,11 +11,11 @@ include('../classes/connextion.php');
 $connection = new Connection();
 
 //call the selectDatabase method
-$connection->selectDatabase('emsipoo');
+$connection->selectDatabase('materielmangement');
 
-include('../classes/etudiant.php');
+include('../classes/professor.php');
 
-$row=Etudiant::loginetudiant('etudiant',$connection->conn,$x);
+$row=Professor::loginProfessor('professor',$connection->conn,$x);
 
 if ($row >0){
         $_SESSION[ "id" ] = $row[ "id" ];

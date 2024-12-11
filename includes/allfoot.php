@@ -3,7 +3,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p class="footer text-center"> Emsi Cours 2023  <strong>3IIR</strong> project Made by <strong>Students of emsi</strong></p>
+                    <p class="footer text-center"> Emsi  2023  <strong>3IIR</strong> project Made by <strong>Students of emsi</strong></p>
                 </div>
             </div>
         </footer>

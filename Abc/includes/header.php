@@ -4,7 +4,7 @@
 			<div class="logo_container">
 				<div class="logo">
 					<a href="../index.php"><img src="images/login.png" alt=""></a>
-					<span>course</span>
+					<span>Materiels</span>
 				</div>
 			</div>
 
@@ -13,7 +13,8 @@
 				<div class="main_nav">
 					<ul class="main_nav_list">
 						<li class="main_nav_item"><a href="index.php">home</a></li>
-						<li class="main_nav_item"><a href="courses.php">courses</a></li>
+						<li class="main_nav_item"><a href="materiels.php">Materiels</a></li>
+            			<li class="main_nav_item"><a href="demande.php">Demande</a></li>
 					</ul>
 				</div>
 			</nav>

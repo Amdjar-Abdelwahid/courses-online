@@ -7,17 +7,17 @@
     $connection = new Connection();
 
     //call the selectDatabase method
-    $connection->selectDatabase('emsipoo');
+    $connection->selectDatabase('materielmangement');
     
-     //include the client file
-    include('../classes/etudiant.php');
+     //include the Professor file
+    include('../classes/professor.php');
 
-    //call the static selectAllClients method and store the result of the method in $clients
-    $etudiants = Etudiant::selectAllEtudiant('etudiant',$connection->conn);
+    //call the static selectAllProfessor method and store the result of the method in $clients
+    $professors = Professor::selectAllProfessor('professor',$connection->conn);
 
     if(isset($_POST['search'])){
         $id=$_POST['names'];
-        header("Location:etdCrs.php?id=$id");
+        header("Location:prfMtr.php?id=$id");
       }
 
 ?>
@@ -53,10 +53,10 @@
             <!-- Navbar End -->
 
 
-            <!-- Etudiants Start -->
+            <!-- professors Start -->
             <div class="table-responsive">
                 <br>
-                <h6 class="mb-4">List of Etudiants from database</h6>
+                <h6 class="mb-4">List of Professor from database</h6>
                 <form class="d-none d-md-flex ms-4" method="post">
                     <!-- <input class="form-control bg-dark border-0" type="search" placeholder="Search"> -->
                     <button class="btn btn-outline-success" type="submit" name="search">search</button>
@@ -64,7 +64,7 @@
                         <option selected>Select a name</option>
                         <?php
                                 
-                                foreach($etudiants as $row){
+                                foreach($professors as $row){
                                         echo "<option value='$row[id]' >$row[firstname]</option>";
 
                                 }
@@ -88,7 +88,7 @@
                     <tbody>
                         <?php
                             $i=1;
-                            foreach($etudiants as $row){
+                            foreach($professors as $row){
                                 echo " <tr>
                                 <td>".$i++."</td>
                                 <td>$row[firstname]</td>
@@ -98,8 +98,8 @@
                                 <td>$row[phone]</td>
                                 <td>$row[promotion]</td>
                                 <td>
-                                <a class ='btn btn-outline-success' href='updateEtd.php?id=$row[id]'>edit</a>
-                                <a class ='btn btn-outline-danger' href='deleteEtd.php?id=$row[id]'>delete</a>
+                                <a class ='btn btn-outline-success' href='updatePrf.php?id=$row[id]'>edit</a>
+                                <a class ='btn btn-outline-danger' href='deletePrf.php?id=$row[id]'>delete</a>
                                 </td>
                             </tr>"; 
                             }

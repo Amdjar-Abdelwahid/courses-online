@@ -13,7 +13,7 @@
 						<div class="logo_container">
 							<div class="logo">
 								<img src="images/logo.png" alt="">
-								<span>course</span>
+								<span>Materiels</span>
 							</div>
 						</div>
 
@@ -27,8 +27,8 @@
 							<ul>
 								<li class="footer_list_item"><a href="#">Home</a></li>
 								<li class="footer_list_item"><a href="#">About Us</a></li>
-								<li class="footer_list_item"><a href="courses.html">Courses</a></li>
-								<li class="footer_list_item"><a href="news.html">News</a></li>
+								<li class="footer_list_item"><a href="materiels.html">Materiels</a></li>
+								<li class="footer_list_item"><a href="index.html">News</a></li>
 							</ul>
 						</div>
 					</div>

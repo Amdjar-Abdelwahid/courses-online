@@ -21,20 +21,20 @@
     $connection = new Connection();
 
     //call the selectDatabase method
-    $connection->selectDatabase('emsipoo');
+    $connection->selectDatabase('materielmangement');
     
      //include the client file
-    include('../classes/courses.php');
+	 include('../classes/materiel.php');
 
-    //call the static selectAllCourses method and store the result of the method in $clients
-    $courses = Cours::selectAllCourses('course',$connection->conn);
+    //call the static selectAllmateriel method and store the result of the method in $clients
+    $materiel = Materiel::selectAllmateriels('materiel',$connection->conn);
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Course - Courses</title>
+<title>materiel - materiels</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Course Project">
@@ -68,10 +68,10 @@
 
 	<div class="home">
 		<div class="home_background_container prlx_parent">
-			<div class="home_background prlx" style="background-image:url(images/courses_background.jpg)"></div>
+			<div class="home_background prlx" style="background-image:url(images/download.jpg)"></div>
 		</div>
 		<div class="home_content">
-			<h1>Courses</h1>
+			<h1>Materiels</h1>
 		</div>
 	</div>
 
@@ -82,30 +82,30 @@
 			<div class="row">
 				<div class="col">
 					<div class="section_title text-center">
-						<h1>Popular Courses</h1>
+						<h1>Popular Materiels</h1>
 					</div>
 				</div>
 			</div>
 
 			<div class="row course_boxes">
 
-				<!-- Popular Course Item -->
-					<?php
-                        foreach($courses as $row){
+				<!-- Popular materiel Item -->
+				<?php
+                        foreach($materiel as $row){
 							echo "
 							<div class='col-lg-4 course_box'>
 								<div class='card'>
-									<img class='card-img-top' src='$row[courseUrl]' alt=''>
+									<img class='card-img-top' src='$row[materielUrl]' alt=''>
 									<div class='card-body text-center'>
-										<div class='card-title'><a href='../AAAA/pincode-verification.php?id=$row[id]'>$row[courseName]</a></div>
-										<div class='card-text'>$row[courseTitle]</div>
+										<div class='card-title'><a href='../AAAA/pincode-verification.php?id=$row[id]'>$row[materielName]</a></div>
+										<div class='card-text'>$row[materielTitle]</div>
 									</div>
 									<div class='price_box d-flex flex-row align-items-center'>l
 										<div class='course_author_image'>
 											<img src='images/author.jpg' alt=''>
 										</div>
-										<div class='course_author_name'>$row[courseAuthor], <span>Author</span></div>
-										<div class='course_price d-flex flex-column align-items-center justify-content-center'><span>$$row[coursePrice]</span></div>
+										<div class='course_author_name'>EMSI <span>Quantity disponible	</span></div>
+										<div class='course_price d-flex flex-column align-items-center justify-content-center'><span>$row[materielQte]</span></div>
 									</div>
 								</div>
 							</div>";

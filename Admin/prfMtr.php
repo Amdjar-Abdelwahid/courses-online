@@ -7,14 +7,14 @@
     $connection = new Connection();
 
     //call the selectDatabase method
-    $connection->selectDatabase('emsipoo');
+    $connection->selectDatabase('materielmangement');
     
      //include the client file
-    include('../classes/etudiant.php');
+    include('../classes/professor.php');
     $id = $_GET['id'];
-    //call the static selectCoursByEtudiant method and store the result of the method in $clients
-    $etudiants = Etudiant::selectCoursByEtudiant($connection->conn,$id);
-    $etudiant = Etudiant::selectEtudiantById('etudiant',$connection->conn,$id);
+    //call the static selectCoursByProfessor method and store the result of the method in $clients
+    $professors = Professor::selectMaterielByProfessor($connection->conn,$id);
+    $professor = Professor::selectProfessorById('professor',$connection->conn,$id);
 
 ?>
 
@@ -49,26 +49,26 @@
             <!-- Navbar End -->
 
 
-            <!-- Etudiants Start -->
+            <!-- professors Start -->
             <div class="table-responsive">
                 <br>
-                <a class="btn btn-outline-success" href="etudiants.php"><?php echo "$etudiant[firstname] $etudiant[lastname]" ?></a>
+                <a class="btn btn-outline-success" href="professors.php"><?php echo "$professor[firstname] $professor[lastname]" ?></a>
                 <table class="table text-start align-middle table-bordered table-hover mb-0">
                 <thead>
                     <tr class="text-white">
                         <th scope="col">N°</th>
-                        <th scope="col">Cours Name</th>
-                        <th scope="col">date Inscription</th>
+                        <th scope="col">Materiel Name</th>
+                        <th scope="col">date reservation</th>
                     </tr>
                     </thead>
                     <tbody>
                         <?php
                             $i=1;
-                            foreach($etudiants as $row){
+                            foreach($professors as $row){
                                 echo " <tr>
                                 <td>".$i++."</td>
-                                <td>$row[courseName]</td>
-                                <td>$row[dateInscription]</td>
+                                <td>$row[materielName]</td>
+                                <td>$row[datereservation]</td>
                             </tr>"; 
                             }
                         ?>
@@ -77,7 +77,7 @@
                     
                 </table>
             </div>
-            <!-- Etudiant End -->
+            <!-- professor End -->
 
 
             <!-- Footer Start -->

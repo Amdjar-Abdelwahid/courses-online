@@ -8,12 +8,12 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
 include('../classes/connextion.php');
 
 $connection = new Connection();
-$connection->selectDatabase('emsipoo');
+$connection->selectDatabase('materielmangement');
 
 //include the etudiant file
-include('../classes/etudiant.php');
+include('../classes/materiel.php');
 
-Etudiant::deleteEtudiant('etudiant',$connection->conn,$id);
+Materiel::deleteMateriel('materiel',$connection->conn,$id);
 
 
 

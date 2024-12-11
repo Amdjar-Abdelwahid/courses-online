@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Emsi Cours</title>
+    <title>Emsi </title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Emsi Cours</a>
+                <a class="navbar-brand" href="index.php">Emsi </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -53,7 +53,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="login.php">Student Login</a>
+                                <a href="login.php">Professor Login</a>
                             </li>
                         </ul>
                     </li> 

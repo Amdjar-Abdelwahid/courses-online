@@ -6,49 +6,44 @@
     $connection = new Connection();
 
     //call the selectDatabase method
-    $connection->selectDatabase('emsipoo');
+    $connection->selectDatabase('materielmangement');
 
-    $fnameValue = "";
-    $lnameValue = "";
-    $emailValue = "";
-    $adressValue = "";
-    $phoneValue = "";
-    $promotionValue = "";
+    $codeValue = "";
+    $nameValue = "";
+    $titleValue = "";
+    $quantityValue = "";
+    $urlValue = "";
+
     $errorMesage = "";
-    $successMesage = "";
+    $successMesage = ""; 
 
-    //include the etudiant file
-    include('../classes/etudiant.php');
+    if(isset($_POST["submit"])){
 
-    if($_SERVER['REQUEST_METHOD']=='GET'){
+        $codeValue = $_POST["code"];
+        $nameValue = $_POST["Cname"];
+        $titleValue = $_POST["title"];
+        $quantityValue = $_POST["quantity"];
+        $urlValue = $_POST["url"];
 
-        $id = $_GET['id'];
-    
-    //call the staticbselectClientById method and store the result of the method in $row
-    $row=Etudiant::selectEtudiantById('etudiant',$connection->conn,$id);
-    
-    $fnameValue = $row["firstname"];
-    $lnameValue = $row["lastname"];
-    $emailValue = $row["email"];
-    $adressValue = $row["address"];
-    $phoneValue = $row["phone"];
-    $promotionValue = $row["promotion"];
-    
-    }else if(isset($_POST["submit"])){
-
-        $fnameValue = $_POST["fname"];
-        $lnameValue = $_POST["lname"];
-        $emailValue = $_POST["email"];
-        $adressValue = $_POST["adrs"];
-        $phoneValue = $_POST["phone"];
-        $promotionValue = $_POST["promotion"];
-
-        if(empty($fnameValue) || empty($lnameValue) || empty($emailValue) || empty($adressValue) || empty($phoneValue) ){
+        if( empty($nameValue)){
             $errorMesage = "all fileds must be filed out!";
-        }else{
-            $etudiant = new Etudiant($fnameValue,$lnameValue,$emailValue,'',$adressValue,$phoneValue,$promotionValue);
-            
-            Etudiant::updateEtudiant($etudiant,'etudiant',$connection->conn, $_GET['id']);
+        }else {
+            //include the etudiant file
+            include('../classes/materiel.php');
+
+            //create new instance of client class with the values of the inputs
+            $materiel = new Materiel($codeValue,$nameValue,$titleValue,$quantityValue,$urlValue);
+
+            //call the insertClient method
+            $materiel->insertMateriel('materiel',$connection->conn);
+
+            //give the $successMesage the value of the static $successMsg of the class
+            $successMesage = Materiel::$successMsg;
+
+            //give the $errorMesage the value of the static $errorMsg of the class
+            $errorMesage = Materiel::$errorMsg;
+
+
         }
     }
 
@@ -90,7 +85,7 @@
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Update Etudiant</h6>
+                            <h6 class="mb-4">Ajouter Materiel</h6>
                             <?php
 
                             if(!empty($errorMesage)){
@@ -116,30 +111,26 @@
                             <br>
                             <form method="post">
                                 <div class="mb-3">
-                                    <label for="fname" class="form-label">First name</label>
-                                    <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $fnameValue ?>">
+                                    <label for="code" class="form-label">materiel Code</label>
+                                    <input type="text" class="form-control" id="code" name="code">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="lname" class="form-label">last name</label>
-                                    <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $lnameValue ?>">
+                                    <label for="Cname" class="form-label">materiel name</label>
+                                    <input type="text" class="form-control" id="Cname" name="Cname">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $emailValue ?>">
+                                    <label for="title" class="form-label">materiel Title</label>
+                                    <input type="text" class="form-control" id="title" name="title">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="address" class="form-label">address</label>
-                                    <input type="text" class="form-control" id="address" name="adrs" value="<?php echo $adressValue ?>">
+                                    <label for="quantity" class="form-label">materiel Quantity</label>
+                                    <input type="number" class="form-control" id="quantity" name="quantity">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="phone" class="form-label">phone</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $phoneValue ?>">
+                                    <label for="url" class="form-label">materiel url</label>
+                                    <input type="text" class="form-control" id="url" name="url">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="promotion" class="form-label">promotion</label>
-                                    <input type="number" class="form-control" id="promotion" name="promotion" value="<?php echo $promotionValue ?>">
-                                </div> 
-                                <button type="submit" class="btn btn-primary" name="submit"->Update</button>
+                                <button type="submit" class="btn btn-primary" name="submit"->Ajouter materiel</button>
                             </form>
                         </div>
                     </div>

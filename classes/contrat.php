@@ -1,12 +1,11 @@
 <?php
 
-class Certificat{
+class Contrat{
 
-public $idCertificat;
-public $idCourses;
-public $idEtudiant;
+public $idContrat;
+public $idmateriels;
+public $idprofessor;
 public $dateObtention;
-public $note;
 
 
 
@@ -15,21 +14,20 @@ public static $errorMsg = "";
 public static $successMsg="";
 
 
-public function __construct($idCourses,$idEtudiant,$dateObtention,$note){
+public function __construct($idmateriels,$idprofessor,$dateObtention){
 
     //initialize the attributs of the class with the parameters, and hash the password
-    $this->idCourses = $idCourses;
-    $this->idEtudiant = $idEtudiant;
+    $this->idmateriels = $idmateriels;
+    $this->idprofessor = $idprofessor;
     $this->dateObtention = $dateObtention;
-    $this->note = $note;
 
 }
 
-public function insertCertificat($tableName,$conn){
+public function insertContrat($tableName,$conn){
 
 //insert a inscr in the database, and give a message to $successMsg and $errorMsg
-$sql = "INSERT INTO $tableName (idCourses, idEtudiant, dateObtention ,note)
-VALUES ('$this->idCourses', '$this->idEtudiant', '$this->dateObtention', '$this->note')";
+$sql = "INSERT INTO $tableName (idmateriels, idprofessor, dateObtention)
+VALUES ('$this->idmateriels', '$this->idprofessor', '$this->dateObtention')";
 if (mysqli_query($conn, $sql)) {
 self::$successMsg= "New record created successfully";
 
